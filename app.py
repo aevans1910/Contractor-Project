@@ -14,6 +14,7 @@ def dogs_index():
     ]
 
     return render_template('dogs_index.html', dogs=dogs)
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
