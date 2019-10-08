@@ -1,0 +1,32 @@
+<!-- templates/dogs_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/dogs'>
+    <fieldset>
+        <legend>New adoptable dog listing</legend>
+        <!-- TITLE -->
+        <p>
+            <label for='name'>Name</label>
+            <input type='text' name='name'/>
+        </p>
+  
+        <!-- DESCRIPTION  -->
+        <p> 
+            <label for='description'>Description</label><br>
+            <input id='description' type='text' name='description' />
+        </p>
+
+        <!-- IMAGE -->
+        <p>
+            <label for='dog-image'>Image</label><br>
+            <input type='url' id='url' placeholder='Image URL' name='dog-image'/>
+        </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save listing</button>
+    </p>
+</form>
+{% endblock %}

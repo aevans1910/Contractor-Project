@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request, url_for
 from pymongo import MongoClient
 
 client = MongoClient()
@@ -17,9 +17,25 @@ def dogs_index():
     #     {'title': 'Large dogs', 'description': '41-70 lbs.'},
     #     {'title': 'Very large dogs', 'description': '71-above lbs.'}
     # ]
-
+    # for dog in dogs.find():
+    #     print(dog['name'])
     return render_template('dogs_index.html', dogs=dogs.find())
 
+@app.route('/dogs/new')
+def dogs_new():
+    """Create a new adoptable dog profile"""
+    return render_template ('dogs_new.html')
+
+@app.route('/dogs', methods=['POST'])
+def dogs_submit():
+    """Submit a new adoptable dog listing"""
+    dog = {
+        'name': request.form.get('name'),
+        'description':request.form.get('description'),
+        'dog-image': request.form.get('dog-image')
+    }
+    dogs.insert_one(dog)
+    return redirect(url_for('dogs_index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

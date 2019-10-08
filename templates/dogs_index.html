@@ -3,8 +3,12 @@
 
 {% block content %}
     <h1>Dogs</h1>
+
+    <a href='/dogs/new'>New adoptable dog!</a>
+
     {% for dog in dogs %}
-        <h2>{{dog.size}}</h2>
-        <small>{{dog.weight}}</small>
+        <h2>{{ dog.name }}</h2>
+        <small>{{ dog.description }}</small>
+        <img src="{{ dog['dog-image'] }}">
     {% endfor %}
 {% endblock %}
