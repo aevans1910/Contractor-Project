@@ -7,8 +7,8 @@
     <a href='/dogs/new'>New adoptable dog!</a>
 
     {% for dog in dogs %}
-        <h2>{{ dog.name }}</h2>
+        <h2><a href='/dogs/{{ dog._id }}'> {{ dog.name }}</a></h2>
         <small>{{ dog.description }}</small>
-        <img src="{{ dog['dog-image'] }}">
+        <img src="{{ dog['image'] }}">
     {% endfor %}
 {% endblock %}

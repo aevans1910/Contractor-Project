@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 client = MongoClient()
 db = client.Contractor
@@ -32,10 +33,16 @@ def dogs_submit():
     dog = {
         'name': request.form.get('name'),
         'description':request.form.get('description'),
-        'dog-image': request.form.get('dog-image')
+        'image': request.form.get('image')
     }
-    dogs.insert_one(dog)
-    return redirect(url_for('dogs_index'))
+    dog_id = dogs.insert_one(dog).inserted_id
+    return redirect(url_for('dogs_show', dog_id=dog_id))
+
+@app.route('/dogs/<dog_id>')
+def dogs_show(dog_id):
+    """Show a single dog"""
+    dog = dogs.find_one({'_id': ObjectId(dog_id)})
+    return render_template ('dogs_show.html', dog=dog)
 
 if __name__ == '__main__':
     app.run(debug=True)
