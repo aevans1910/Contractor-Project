@@ -8,7 +8,7 @@
 
     {% for dog in dogs %}
         <h2><a href='/dogs/{{ dog._id }}'> {{ dog.name }}</a></h2>
-        <small>{{ dog.description }}</small>
-        <img src="{{ dog['image'] }}">
+        <small>{{ dog.description }}</small><br>  <br>
+        <img src='{{dog['image']}}' style = "max-height: 420px; max-width: 370px;"><br>
     {% endfor %}
 {% endblock %}

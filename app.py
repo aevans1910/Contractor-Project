@@ -30,6 +30,7 @@ def dogs_new():
 @app.route('/dogs', methods=['POST'])
 def dogs_submit():
     """Submit a new adoptable dog listing"""
+    print("Hey")
     dog = {
         'name': request.form.get('name'),
         'description':request.form.get('description'),
@@ -42,7 +43,7 @@ def dogs_submit():
 def dogs_show(dog_id):
     """Show a single dog"""
     dog = dogs.find_one({'_id': ObjectId(dog_id)})
-    return render_template ('dogs_show.html', dog=dog)
+    return render_template('dogs_show.html', dog=dog)
 
 if __name__ == '__main__':
     app.run(debug=True)
