@@ -4,9 +4,15 @@
 {% block content %}
 <a href='/'>Back to home</a>
 
-<h1>{{ dog.name }}</h1> <br>
+<h1>{{ dog.name }}</h1>
 <h2>{{ dog.description }}</h2> <br>
 <img src="{{ dog.image }}" style = "max-height: 420px; max-width: 370px;">
 
 <p><a href='/dogs/{{dog._id}}/edit'>Edit</a></p>
+<!-- Delete button -->
+<p>
+    <form method='POST' action='/dogs/{{dog._id}}/delete'>
+    <button type='submit'>Delete</button>
+    </form>
+</p>
 {% endblock %}

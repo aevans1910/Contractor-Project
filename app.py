@@ -64,5 +64,11 @@ def dogs_update(dog_id):
     )
     return redirect(url_for('dogs_show', dog_id=dog_id))
 
+@app.route('/dogs/<dog_id>/delete', methods=['POST'])
+def dogs_delete(dog_id):
+    """Delete one listing"""
+    dogs.delete_one({'_id': ObjectId(dog_id)})
+    return redirect(url_for('dogs_index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
