@@ -25,12 +25,11 @@ def dogs_index():
 @app.route('/dogs/new')
 def dogs_new():
     """Create a new adoptable dog profile"""
-    return render_template ('dogs_new.html')
+    return render_template ('dogs_new.html', dog={}, title='New listing')
 
 @app.route('/dogs', methods=['POST'])
 def dogs_submit():
     """Submit a new adoptable dog listing"""
-    print("Hey")
     dog = {
         'name': request.form.get('name'),
         'description':request.form.get('description'),
@@ -44,6 +43,26 @@ def dogs_show(dog_id):
     """Show a single dog"""
     dog = dogs.find_one({'_id': ObjectId(dog_id)})
     return render_template('dogs_show.html', dog=dog)
+
+@app.route('/dogs/<dog_id>/edit')
+def dogs_edit(dog_id):
+    """Show the edit form for a dog"""
+    dog = dogs.find_one({'_id': ObjectId(dog_id)})
+    return render_template('dogs_edit.html', dog=dog, title='Edit listing')
+
+@app.route('/dogs/<dog_id>', methods=['POST'])
+def dogs_update(dog_id):
+    """Submit an edited listing"""
+    updated_dog = {
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'image': request.form.get('image')
+    }
+    dogs.update_one(
+        {'_id': ObjectId(dog_id)},
+        {'$set': updated_dog}
+    )
+    return redirect(url_for('dogs_show', dog_id=dog_id))
 
 if __name__ == '__main__':
     app.run(debug=True)

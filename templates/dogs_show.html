@@ -1,8 +1,12 @@
-<!-- templates/playlists_show.html -->
+<!-- templates/dogs_show.html -->
 {% extends 'base.html' %}
 
 {% block content %}
+<a href='/'>Back to home</a>
+
 <h1>{{ dog.name }}</h1> <br>
 <h2>{{ dog.description }}</h2> <br>
 <img src="{{ dog.image }}" style = "max-height: 420px; max-width: 370px;">
+
+<p><a href='/dogs/{{dog._id}}/edit'>Edit</a></p>
 {% endblock %}

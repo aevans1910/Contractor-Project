@@ -1,8 +1,8 @@
-<!-- templates/dogs_new.html -->
+<!-- templates/dogs_edit.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<form method='POST' action='/dogs'>
+<form method='POST' action='/dogs/{{dog._id}}'>
     {% include 'partials/dogs_form.html' %}
 </form>
 {% endblock %}

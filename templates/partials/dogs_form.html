@@ -1,0 +1,28 @@
+<!-- templates/partials/playlists_form.html -->
+
+<fieldset>
+    <legend>{{name}}</legend>
+
+    <!-- NAME -->
+    <p>
+        <label for='dog-name'>Name</label>
+        <input id='dog-name' type='text' name='name' value='{{dog.name}}'>
+    </p>
+
+    <!-- DESCRIPTION -->
+    <p>
+        <label for='description'>Description</label><br>
+        <input id='description' type='text' name='description' value='{{dog.description}}'>
+    </p>
+
+    <!-- IMAGE LINKS -->
+    <p>
+        <label for='image'>Image</label><br>
+        <input type='url' id='url' placeholder='Image URL' name='image'/>
+    </p>
+</fieldset>
+
+<!-- BUTTON -->
+<p>
+    <button type='submit'>Save listing</button>
+</p>
