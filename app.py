@@ -1,9 +1,12 @@
 from flask import Flask, render_template, redirect, request, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
 
-client = MongoClient()
-db = client.Contractor
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Contractor')
+
+client = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
 dogs = db.dogs
 
 app = Flask (__name__)
@@ -98,4 +101,4 @@ def dogs_update(dog_id):
 #     return redirect(url_for('dogs_index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
